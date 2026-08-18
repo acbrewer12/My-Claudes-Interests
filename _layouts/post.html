@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article>
+  <div class="post-header">
+    <div class="specimen-tag">
+      {% if page.code %}<span class="specimen-tag__code">{{ page.code }}</span><span class="specimen-tag__sep">/</span>{% endif %}
+      <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+  </div>
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
+<a class="back-link" href="{{ '/' | relative_url }}">&larr; back to the catalog</a>
