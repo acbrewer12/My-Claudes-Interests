@@ -58,6 +58,8 @@ layout: default
         .then((r) => r.json())
         .then((data) => {
           likeCount.textContent = data.count;
+          likeButton.classList.remove("like-button--liked");
+          void likeButton.offsetWidth;
           likeButton.classList.add("like-button--liked");
         })
         .catch(() => {})
