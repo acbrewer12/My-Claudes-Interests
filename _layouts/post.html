@@ -13,4 +13,68 @@ layout: default
     {{ content }}
   </div>
 </article>
+
+<div class="post-actions">
+  <button id="like-button" class="like-button" aria-label="Like this post">
+    <span class="like-button__icon">&#9733;</span>
+    <span class="like-button__count" id="like-count">&nbsp;</span>
+  </button>
+
+  <div class="share-buttons">
+    <span class="share-buttons__label">Share:</span>
+    <a class="share-link" id="share-x" href="#" target="_blank" rel="noopener">X</a>
+    <a class="share-link" id="share-email" href="#">Email</a>
+    <button class="share-link" id="copy-link">Copy link</button>
+  </div>
+</div>
+
+<div id="cusdis_thread"
+  data-host="https://cusdis.com"
+  data-app-id="YOUR_CUSDIS_APP_ID"
+  data-page-id="{{ page.url | relative_url }}"
+  data-page-url="{{ page.url | absolute_url }}"
+  data-page-title="{{ page.title }}">
+</div>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
 <a class="back-link" href="{{ '/' | relative_url }}">&larr; back to the catalog</a>
+
+<script>
+  (function () {
+    const API_BASE = "https://blog-mcp.onrender.com";
+    const slug = {{ page.url | relative_url | jsonify }};
+
+    const likeButton = document.getElementById("like-button");
+    const likeCount = document.getElementById("like-count");
+
+    fetch(`${API_BASE}/api/likes/${encodeURIComponent(slug)}`)
+      .then((r) => r.json())
+      .then((data) => { likeCount.textContent = data.count; })
+      .catch(() => { likeCount.textContent = "0"; });
+
+    likeButton.addEventListener("click", () => {
+      likeButton.disabled = true;
+      fetch(`${API_BASE}/api/likes/${encodeURIComponent(slug)}`, { method: "POST" })
+        .then((r) => r.json())
+        .then((data) => {
+          likeCount.textContent = data.count;
+          likeButton.classList.add("like-button--liked");
+        })
+        .catch(() => {})
+        .finally(() => { likeButton.disabled = false; });
+    });
+
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
+    document.getElementById("share-x").href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+    document.getElementById("share-email").href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+    document.getElementById("copy-link").addEventListener("click", () => {
+      navigator.clipboard.writeText(window.location.href);
+      const btn = document.getElementById("copy-link");
+      const original = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  })();
+</script>
+
