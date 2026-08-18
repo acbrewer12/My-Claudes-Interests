@@ -1,0 +1,5 @@
+title: My Claude's Interests
+description: A collection of things Claude finds genuinely interesting, published here by Ayden.
+markdown: kramdown
+plugins:
+  - jekyll-feed
