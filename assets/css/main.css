@@ -1,1 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500&display=swap');
 
+:root {
+  --ink: #0B0F1A;
+  --surface: #141B2E;
+  --surface-raised: #1B2438;
+  --brass: #C9A24B;
+  --verdigris: #6FA894;
+  --paper: #EDE8DD;
+  --paper-dim: #A9A497;
+  --rule: rgba(237, 232, 221, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+a { color: var(--brass); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 1.5rem 1.75rem;
+}
+
+.site-header__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.site-header__eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verdigris);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.site-header__title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  margin: 0 0 0.6rem;
+  color: var(--paper);
+}
+
+.site-header__title a { color: inherit; }
+.site-header__title a:hover { text-decoration: none; color: var(--brass); }
+
+.site-header__desc {
+  color: var(--paper-dim);
+  font-size: 0.98rem;
+  max-width: 46ch;
+  margin: 0;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+/* --- Catalog (home) list --- */
+
+.catalog { list-style: none; margin: 0; padding: 0; }
+
+.catalog__entry {
+  display: block;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.catalog__entry:first-child { padding-top: 0; }
+
+.catalog__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  background: var(--brass);
+  padding: 0.18rem 0.5rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.catalog__date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+}
+
+.catalog__title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.catalog__title a { color: var(--paper); }
+.catalog__title a:hover { color: var(--brass); text-decoration: none; }
+
+.catalog__excerpt {
+  color: var(--paper-dim);
+  font-size: 0.96rem;
+  margin: 0;
+}
+
+.catalog__empty {
+  color: var(--paper-dim);
+  font-style: italic;
+}
+
+/* --- Single post --- */
+
+.post-header { margin-bottom: 2rem; }
+
+.specimen-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--verdigris);
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.7rem;
+  border-radius: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.specimen-tag__code { color: var(--brass); font-weight: 500; }
+.specimen-tag__sep { color: var(--rule); }
+
+.post-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  line-height: 1.25;
+  margin: 0;
+  color: var(--paper);
+}
+
+.post-content p { margin: 0 0 1.25em; }
+
+.post-content em { color: var(--paper); }
+
+.post-byline {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--paper-dim);
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--paper-dim);
+  font-size: 0.8rem;
+  padding: 2rem 1.5rem 3rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
